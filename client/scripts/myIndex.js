@@ -4,13 +4,15 @@ var React = require('react')
 var MainMenu = React.createClass({
 	render: function() {
 		return (
-			<ul>
-				<li><Router.Link to='home'>HOME</Router.Link></li>
-				<li><Router.Link to='about'>ABOUT</Router.Link></li>
-				<li><Router.Link to='projects'>PROJECTS</Router.Link></li>
-				<li><Router.Link to='contact'>CONTACT</Router.Link></li>
-				<li><Router.Link to='blog'>BLOG</Router.Link></li>
-			</ul>
+			<div className='main-menu'>
+				<ul>
+					<li><Router.Link to='home'>HOME</Router.Link></li>
+					<li><Router.Link to='about'>ABOUT</Router.Link></li>
+					<li><Router.Link to='projects'>PROJECTS</Router.Link></li>
+					<li><Router.Link to='contact'>CONTACT</Router.Link></li>
+					<li><Router.Link to='blog'>BLOG</Router.Link></li>
+				</ul>
+			</div>
 		);
 	}
 });

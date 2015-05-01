@@ -1,9 +1,9 @@
-var express = require('express'),
-	browserify = require('browserify-middleware'),
-	reactify = require('reactify'),
-	less = require('less-middleware'),
-	nunjucks = require('nunjucks'),
-	config = require('./client/config');
+var express = require('express')
+	, browserify = require('browserify-middleware')
+	, reactify = require('reactify')
+	, less = require('less-middleware')
+	, nunjucks = require('nunjucks')
+	, config = require('./client/config');
 
 // initialise express
 var app = express();
@@ -44,5 +44,5 @@ app.get('*', function(req, res) {
 
 // start the server
 var server = app.listen(process.env.PORT || 3000, function() {
-	console.log('\nServer ready on port %d\n', server.address().port);
+	console.log('Server ready on port %d', server.address().port);
 });
