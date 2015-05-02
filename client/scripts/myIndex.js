@@ -21,7 +21,7 @@ var LeftColumn = React.createClass({
 	render: function() {
 		return (
 			<div className='col-xs-6 col-md-6 col-lg-6 left-column'>
-				<img id='signature' src='../../public/img/tdk.svg' />
+				<img id='signature' src='/img/tdk.svg' />
 				<MainMenu />
 			</div>
 		);
