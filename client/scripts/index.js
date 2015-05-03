@@ -21,7 +21,7 @@ var LeftContent = React.createClass({
 	render: function() {
 		return (
 			<div className='left-content'>
-				<img id='signature' value='/img/tdk.svg' />
+				<img id='signature' src='/img/tdk.svg' />
 				<MainMenu />
 			</div>
 		);
