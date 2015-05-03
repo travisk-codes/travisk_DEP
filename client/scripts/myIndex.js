@@ -17,23 +17,43 @@ var MainMenu = React.createClass({
 	}
 });
 
+var Signature = React.createClass({
+	render: function() {
+		return (
+			<div className='sig-container'>
+				<img id='signature' src='/img/tdk.svg' />
+			</div>
+		);
+	}
+})
+
 var LeftColumn = React.createClass({
 	render: function() {
 		return (
 			<div className='col-xs-6 col-md-6 col-lg-6 left-column'>
-				<img id='signature' src='/img/tdk.svg' />
+				<Signature />
 				<MainMenu />
 			</div>
 		);
 	}
 });
 
+var RightColumn = React.createClass({
+	render: function() {
+		return (
+			<div className='col-xs-6 col-md-6 col-lg-6 right-column'>
+				<Router.RouteHandler />
+			</div>
+		);
+	}
+})
+
 var Page = React.createClass({
 	render: function() {
 		return (
 			<div className='container'>
 				<LeftColumn />
-				<Router.RouteHandler />
+				<RightColumn />
 			</div>
 		);
 	}
