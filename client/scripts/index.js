@@ -1,35 +1,59 @@
-var React = require('react'),
-	Router = require('react-router');
+var React = require('react')
+	, Router = require('react-router');
 
-var Header = React.createClass({
+var MainMenu = React.createClass({
 	render: function() {
 		return (
-			<div className="page-header">
-				<h1>travisk</h1>
+			<div className='main-menu'>
+				<ul>
+					<li><Router.Link to='home'>HOME</Router.Link></li>
+					<li><Router.Link to='about'>ABOUT</Router.Link></li>
+					<li><Router.Link to='contact'>CONTACT</Router.Link></li>
+					<li><Router.Link to='projects'>PROJECTS</Router.Link></li>
+					<li><Router.Link to='blog'>BLOG</Router.Link></li>
+				</ul>
 			</div>
 		);
 	}
 });
 
-var PageNav = React.createClass({
+var LeftContent = React.createClass({
 	render: function() {
 		return (
-			<div className="nav">
-				<Router.Link to="home">Home</Router.Link>
-				&nbsp; | &nbsp;
-				<Router.Link to="about">About</Router.Link>
+			<div className='left-content'>
+				<img id='signature' value='/img/tdk.svg' />
+				<MainMenu />
+			</div>
+		);
+	}
+})
+
+var LeftColumn = React.createClass({
+	render: function() {
+		return (
+			<div className='col-xs-4 col-md-4 col-lg-4 left-column'>
+				<LeftContent />
 			</div>
 		);
 	}
 });
 
-var App = React.createClass({
+var RightColumn = React.createClass({
 	render: function() {
 		return (
-			<div className="container">
-				<Header />
-				<PageNav />
-				<Router.RouteHandler/>
+			<div className='col-xs-8 col-md-8 col-lg-8 right-column'>
+				<Router.RouteHandler />
+			</div>
+		);
+	}
+})
+
+var Page = React.createClass({
+	render: function() {
+		return (
+			<div className='container'>
+				<LeftColumn />
+				<RightColumn />
 			</div>
 		);
 	}
@@ -37,17 +61,22 @@ var App = React.createClass({
 
 var routes = {
 	Home: require('../routes/Home'),
-	About: require('../routes/About')
+	About: require('../routes/About'),
+	Projects: require('../routes/Projects'),
+	Contact: require('../routes/Contact'),
+	Blog: require('../routes/Blog')
 };
 
 var routes = (
-	<Router.Route name="app" path="/" handler={App}>
-		<Router.Route name="home" path="/" handler={routes.Home}/>
-		<Router.Route name="about" path="/about" handler={routes.About}/>
-		<Router.DefaultRoute handler={routes.Home}/>
+	<Router.Route name='page' path='/' handler={Page}>
+		<Router.Route name='home' path='/' handler={routes.Home} />
+		<Router.Route name='about' path='/about' handler={routes.About} />
+		<Router.Route name='projects' path='/projects' handler={routes.Projects} />
+		<Router.Route name='contact' path='/contact' handler={routes.Contact} />
+		<Router.Route name='blog' path='/blog' handler={routes.Blog} />
 	</Router.Route>
 );
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(<Handler/>, document.body);
+	React.render(<Handler />, document.body);
 });
