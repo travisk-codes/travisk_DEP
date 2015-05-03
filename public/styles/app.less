@@ -6,12 +6,17 @@
 // Import Bootstrap
 @import "../../node_modules/bootstrap/less/bootstrap.less";
 
-// Give the navigation some padding
-body, html {
+* {
+	box-sizing: border-box;
 	padding: 0px;
 	margin: 0px;
+}
+
+// Give the navigation some padding
+body, html {
 	font-family: Helvetica;
 	height: 100%;
+	width: 100%;
 	fill: white;
 	
 	// Style the active links
@@ -22,6 +27,16 @@ body, html {
 
 ul {
 	list-style-type: none;
+}
+
+h1 {
+	margin: 0px;
+	padding: 0px;
+}
+
+.right-content {
+	padding: 40px;
+	margin: 0px;
 }
 
 .container {
@@ -38,7 +53,6 @@ ul {
 #signature {
 	padding: 10%;
 	width: 100%;
-	fill: #fff;
 }
 
 .left-column {
@@ -53,30 +67,22 @@ ul {
 }
 
 .left-content {
-	margin-top: 200px;
-	margin-bottom: auto;
+	position: relative;
+	top: 50%;
 }
 
 .right-column {
-	padding-top: 10px;
+	padding: 0px;
+	margin: 0px;
 	display: block;
 	float: right;
 	font-size: 18px;
 }
 
 .main-menu {
-	margin-top: -50px;
+	margin-top: -55px;
 	padding-right: 40px;
-	font-size: 40px;
+	font-size: 35px;
 	text-align: right;
 	font-weight: bold;
-}
-
-svg {
-	position: fixed;
-	fill: white;
-	width: 295px;
-	left: 35px;
-	top: 89px; /* looks right */
-
 }
