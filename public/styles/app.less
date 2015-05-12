@@ -18,12 +18,9 @@ body, html {
 	height: 100%;
 	width: 100%;
 	fill: white;
-	
-	// Style the active links
-	a.active {
-
-	}
 }
+
+
 
 ul {
 	list-style-type: none;
@@ -46,43 +43,55 @@ h1 {
 	height: 100%;
 }
 
-.sig-container {
-	padding-top: 30%;
-}
-
 #signature {
 	padding: 10%;
 	width: 100%;
 }
 
-.left-column {
-	display: block;
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	margin: 0px;
-	padding: 0px;
-
-	background-color: lightcoral;
-}
-
-.left-content {
-	position: relative;
-	top: 50%;
-}
-
-.right-column {
-	padding: 0px;
-	margin: 0px;
-	display: block;
-	float: right;
-	font-size: 18px;
-}
-
 .main-menu {
-	margin-top: -55px;
-	padding-right: 40px;
+	margin-left: auto;
+	margin-right: auto;
 	font-size: 35px;
-	text-align: right;
-	font-weight: bold;
+	text-align: center;
+	
+	a {
+    text-decoration: none;
+    color: #f8f8f8;
+	}
+
+	a:hover {
+		color: white;
+    text-shadow: 0px 0px 5px white;
+	}
+
+	a:active {
+    text-shadow: 0px 0px 4px white;
+    color: white;
+	}
+}
+
+#about {
+	display: relative;
+	padding-left: 17px;
+	letter-spacing: 17px;
+	font-weight: 600;
+}
+
+#contact {
+	letter-spacing: 4px;
+	padding-left: 4px;
+	font-weight: 500;
+}
+
+#projects {
+	letter-spacing: 2px;
+	padding-left: 2px;
+	font-weight: 300;
+}
+
+#blog {
+	/*text-shadow: 2px 0px white;*/
+	padding-left: 31px;
+	letter-spacing: 31px;
+	font-weight: 900;
 }

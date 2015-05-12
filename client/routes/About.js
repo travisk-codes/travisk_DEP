@@ -8,7 +8,7 @@ var About = React.createClass({
 	render: function() {
 		return (
 			<div className='right-content'>
-				<h1><b>Who is this?</b></h1>
+				<h1><b>Who is This?</b></h1>
 				<br />
 				<p>{this.getText()}</p>
 			</div>

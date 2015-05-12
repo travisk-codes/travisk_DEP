@@ -1,16 +1,28 @@
 var React = require('react')
-	, Router = require('react-router');
+	, Router = require('react-router')
+	, Restyle = require('./style.js')
+	, d3 = require('d3')
+	, Signature = require('./Signature.js');
+
+var signature
 
 var MainMenu = React.createClass({
 	render: function() {
 		return (
 			<div className='main-menu'>
 				<ul>
-					<li><Router.Link to='home'>HOME</Router.Link></li>
-					<li><Router.Link to='about'>ABOUT</Router.Link></li>
-					<li><Router.Link to='contact'>CONTACT</Router.Link></li>
-					<li><Router.Link to='projects'>PROJECTS</Router.Link></li>
-					<li><Router.Link to='blog'>BLOG</Router.Link></li>
+					<li><Router.Link to='blog'>
+						<span id='blog'><b>BLOG</b></span>
+					</Router.Link></li>
+					<li><Router.Link to='about'>
+						<span id='about'><b>ABOUT</b></span>
+					</Router.Link></li>
+					<li><Router.Link to='contact'>
+						<span id='contact'>CONTACT</span>
+					</Router.Link></li>
+					<li><Router.Link to='projects'>
+						<span id='projects'>PROJECTS</span>
+					</Router.Link></li>
 				</ul>
 			</div>
 		);
@@ -21,7 +33,10 @@ var LeftContent = React.createClass({
 	render: function() {
 		return (
 			<div className='left-content'>
-				<img id='signature' src='/img/tdk.svg' />
+				<Router.Link to='home'>
+					{/*<img id='signature' src='/img/tdk.svg' draggable='false' />*/}
+					<Signature />
+				</Router.Link>
 				<MainMenu />
 			</div>
 		);
@@ -29,9 +44,17 @@ var LeftContent = React.createClass({
 })
 
 var LeftColumn = React.createClass({
-	render: function() {
+	getInitialState: function() {
+		return { style: Restyle.getLeftColumn() };
+	}, handleResize: function(e) {
+    this.setState(this.getInitialState());
+  }, componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  }, componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
+  }, render: function() {
 		return (
-			<div className='col-xs-4 col-md-4 col-lg-4 left-column'>
+			<div className='left-column' style={this.state.style}>
 				<LeftContent />
 			</div>
 		);
@@ -39,9 +62,21 @@ var LeftColumn = React.createClass({
 });
 
 var RightColumn = React.createClass({
+	getInitialState: function() {
+		return { style: Restyle.getRightColumn() };
+	},
+	handleResize: function(e) {
+    this.setState(this.getInitialState());
+  },
+  componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
+  },
 	render: function() {
 		return (
-			<div className='col-xs-8 col-md-8 col-lg-8 right-column'>
+			<div className='right-column' style={this.state.style}>
 				<Router.RouteHandler />
 			</div>
 		);
