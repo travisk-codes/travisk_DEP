@@ -33,10 +33,9 @@ var LeftContent = React.createClass({
 	render: function() {
 		return (
 			<div className='left-content'>
-				<Router.Link to='home'>
-					{/*<img id='signature' src='/img/tdk.svg' draggable='false' />*/}
+				{/*<Router.Link to='home'>*/}
 					<Signature />
-				</Router.Link>
+				{/*</Router.Link>*/}
 				<MainMenu />
 			</div>
 		);

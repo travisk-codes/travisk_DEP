@@ -16,7 +16,7 @@ module.exports = Restyle = {
 			bottom: 0,
 			margin: 0,
 			padding: 0,
-			width: window.innerWidth * (1/4),
+			width: window.innerWidth * (1/3),
 			height: window.innerHeight,
 			backgroundColor: 'lightcoral',
 		};
@@ -28,7 +28,7 @@ module.exports = Restyle = {
 			margin: 0,
 			float: 'right',
 			fontSize: 18,
-			width: window.innerWidth * (3/4),
+			width: window.innerWidth * (2/3),
 			height: window.innerHeight,
 			backgroundColor: '#f8f8f8'
 		};
