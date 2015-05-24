@@ -23,6 +23,7 @@ var Home = React.createClass({
 					<li>My spring project embedded on the Projects page</li>
 					<li>Glow around the signature</li>
 					<li>(Hopefully) get shadow feature working. I think that is the extra 	bit needed.</li>
+					<li>Tune random colors to a pleasing subset. Maybe using HSL or whatever?</li>
 				</ul>
 			</div>
 		);

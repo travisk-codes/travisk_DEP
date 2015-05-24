@@ -1,103 +1,139 @@
-/* 
-// App Stylesheet
-// --------------
-*/
-
-// Import Bootstrap
 @import "../../node_modules/bootstrap/less/bootstrap.less";
 
-* {
-	box-sizing: border-box;
-	padding: 0px;
-	margin: 0px;
-}
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+html { min-height: 100%; position: relative; }
+body { height: 100%; }
+h1 { margin-top: 0px; }
 
-// Give the navigation some padding
-body, html {
+#container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	/*z-index: -1; /* if background */
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flext-start;
+	align-items: stretch;	
+
 	font-family: Helvetica;
-	height: 100%;
-	width: 100%;
+}
+
+#left-column {
+	flex: 1;
+	background-color: purple;
+
+	ul {
+		list-style-type: none;
+		svg text {
+			text-decoration: none;
+		}
+	}
+}
+#left-content {
+	margin: 12%;
+	justify-content: center;
+}
+
+#menu {
+	fill: #f8f8f8;
+}
+
+
+
+
+
+#sig-paths {
+	stroke: #f8f8f8;
+	stroke-width: 6;
+	cursor: pointer;
+}
+
+.menu-item {
+	cursor: pointer;
+	font-size: 100px;
+}
+
+.menu-item:hover {
 	fill: white;
+  text-decoration: none;
+  text-shadow: 0px 0px 5px white;
 }
 
-
-
-.left-column ul {
-	list-style-type: none;
-}
-
-h1 {
-	margin: 0px;
-	padding: 0px;
-}
-
-.right-content {
-	padding: 40px;
-	margin: 0 auto;
-	margin-left: 0px;
-	width: 35em;
-}
-
-.left-content {
-	width: 320px;
-	float: right;
-}
-
-.container {
-	padding: 0px;
-	margin: 0px;
-	width: 100%;
-	height: 100%;
-}
-
-#signature {
-	padding: 10%;
-	width: 100%;
-}
-
-.main-menu {
-	margin-left: 0 auto;
-	font-size: 35px;
-	text-align: center;
-	
-	a {
-    text-decoration: none;
-    color: #f8f8f8;
-	}
-
-	a:hover {
-		color: white;
-    text-shadow: 0px 0px 5px white;
-	}
-
-	a:active {
-    text-shadow: 0px 0px 4px white;
-    color: white;
-	}
-}
-
-#about {
-	display: relative;
-	padding-left: 17px;
-	letter-spacing: 17px;
-	font-weight: 600;
-}
-
-#contact {
-	letter-spacing: 4px;
-	padding-left: 4px;
-	font-weight: 500;
-}
-
-#projects {
-	letter-spacing: 2px;
-	padding-left: 2px;
-	font-weight: 300;
-}
-
-#blog {
-	/*text-shadow: 2px 0px white;*/
-	padding-left: 31px;
-	letter-spacing: 31px;
+#menu-item-blog {
 	font-weight: 900;
+	letter-spacing: 1.04em;
+	text-shadow: 2px 0px 0px #f8f8f8;
+}
+
+#menu-item-about {
+	font-weight: 600;
+	letter-spacing: 0.6em;
+}
+
+#menu-item-cont {
+	font-weight: 500;
+	letter-spacing: 0.19em;
+}
+
+#menu-item-proj {
+	font-weight: 300;
+	letter-spacing: 0.12em;
+}
+
+#right-column {
+	display: flex;
+	justify-content: center;
+	backgroundColor: '#f8f8f8';
+	flex: 2;
+	fontSize: 18;
+}
+
+#right-content {
+	padding: 40px;
+	width: 40em;
+	text-shadow: 2px 2px 5px white;
+}
+
+@media (max-width: 768px) {
+	#container {
+		flex-direction: column;
+	}
+
+	#left-column {
+		flex: none;
+		height: 100px;
+	}
+
+	#left-content {
+		margin: 10px;
+		margin-left: 20px;
+		justify-content: flex-start;
+	}
+
+	#menu {
+		width: 128px;
+	}
+}
+
+@media (min-width: 1000px) {
+	#left-column {
+		display: flex;
+		justify-content: flex-end;
+		flex: 2;
+	}
+
+	#right-column {
+		justify-content: flex-start;
+		flex: 3;
+	}
+
+	#left-content {
+		width: 250px;
+		margin: 40px;
+	}
 }

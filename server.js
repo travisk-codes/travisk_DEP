@@ -1,9 +1,9 @@
-var express = require('express')
-	, browserify = require('browserify-middleware')
-	, reactify = require('reactify')
-	, less = require('less-middleware')
-	, nunjucks = require('nunjucks')
-	, config = require('./client/config');
+var express = require('express');
+var browserify = require('browserify-middleware');
+var reactify = require('reactify');
+var less = require('less-middleware');
+var nunjucks = require('nunjucks');
+var config = require('./client/config');;
 
 // initialise express
 var app = express();
@@ -19,17 +19,29 @@ app.use(less('public'));
 app.use(express.static('public'));
 
 // common packages are precompiled on server start and cached
-app.get('/js/' + config.common.bundle, browserify(config.common.packages, {
-	cache: true,
-	precompile: true
-}));
+app.get(
+	'/js/' + config.common.bundle, 
+	browserify(
+		config.common.packages,
+		{ 
+			cache: true, 
+			precompile: true,
+		}
+	)
+);
 
 // any file in /client/scripts will automatically be browserified,
 // excluding common packages.
-app.use('/js', browserify('./client/scripts', {
-	external: config.common.packages,
-	transform: ['reactify']
-}));
+app.use(
+	'/js', 
+	browserify(
+		'./client/scripts', 
+		{
+			external: config.common.packages,
+			transform: ['reactify'],
+		}
+	)
+);
 
 /*
 	set up any additional server routes (api endpoints, static pages, etc.)
