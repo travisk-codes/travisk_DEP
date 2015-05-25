@@ -10,7 +10,10 @@ var Blog = React.createClass({
 				<h3>5/22/15</h3>
 				<p>{'Saw an article on Hacker News about flex-box, decided that I should get my styling under control and try out flex-box at the same time! So mostly just getting everything consolidated under '}<code>app.less</code>{' and try my best to get stuff back the way it was looking.'}</p>
 				<h3>5/23/15</h3>
-				<p>{'So styling is in check again, things are working... mostly. Started working on the responsive mobile view. '}<code>flex-box</code>{' playing along nicely, and now I\'m just wrestling with the SVG to get the proportions in sync with the tool bar ('}<code>height: 100px</code>{'). Currently seeing if I can manipulate the entire element\'s '}<code>view-box</code>{ ' property in css, but I\'m now having my doubts.'}</p>			
+				<p>{'So styling is in check again, things are working... mostly. Started working on the responsive mobile view. '}<code>flex-box</code>{' playing along nicely, and now I\'m just wrestling with the SVG to get the proportions in sync with the tool bar ('}<code>height: 100px</code>{'). Currently seeing if I can manipulate the entire element\'s '}<code>view-box</code>{ ' property in css, but I\'m now having my doubts.'}</p>
+				<p>{'I did it! The site is now fully responsive. The main content of the page is set up to be around 80 characters per line, and there are now both big screen and small screen versions, both catering to the 80 character line. Phew! Now I guess the last big parts are... let\'s see... random color or slowly shifting color, fully working SVG and shadow effects... and then maybe some extra stuff too?'}</p>
+				<h3>5/24/15</h3>
+				<p>{'Yeah, d3 is gonna take me a while I think. Found an issue with content not being scrollable in the right column, turns out the solution is merely '}<code>overflow: auto</code>{', which is nice.'}</p>
 			</div>
 		);
 	}

@@ -9,7 +9,6 @@ var Home = React.createClass({
 		return (
 			<div className='right-content'>
 				<h1><b>Welcome!</b></h1>
-				<br />
 				<p>{this.getText()}</p>
 				<p>{'Here are the features I would like for this website to have before I call it "finished":'}</p>
 				<ul>

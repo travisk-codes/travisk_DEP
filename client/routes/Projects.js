@@ -1,5 +1,4 @@
-var React = require('react')
-
+var React = require('react');
 
 var Box = React.createClass({
   render: function() {

@@ -21,7 +21,6 @@ var Contact = React.createClass({
 		return (
 			<div className='right-content'>
 				<h1><b>Me Around the Web</b></h1>
-				<br />
 				<p>{this.getText()}</p>
 			</div>
 		);
