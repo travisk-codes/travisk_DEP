@@ -4,11 +4,32 @@ var d3 = require('d3');
 var Menu = require('./Menu');
 
 var LeftColumn = React.createClass({
+	getInitialState: function() {
+		var hue = parseInt(Math.random() * 360); // [0, 360]
+		var sat = parseInt(Math.random() * 67) + 33 + '%'; // [33, 100]
+		var lum = parseInt(Math.random() * 33) + 33 + '%'; // [33, 66]
+		var color = 'hsla(' + hue + ',' + sat + ',' + lum + ',1)';
+		
+		return { backgroundColor: color };
+	},
+
+	getPercent: function() {
+		return parseInt(Math.random() * 100);
+	},
+
   render: function() {
 		return (
-			<div id='left-column'>
+			<div id='left-column' style={ this.state }>
 				<div id='left-content'>
 					<Menu />
+					{/* menu I want
+					<Menu>
+						<Signature>
+						<SvgText id='blog' />
+						<SvgText id='about' />
+						<SvgText id='contact' />
+						<SvgText id='projects' />
+					</Menu>*/}
 				</div>
 			</div>
 		);
