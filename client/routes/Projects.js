@@ -3,8 +3,11 @@ var React = require('react');
 var Box = React.createClass({
   render: function() {
     return (
-      <div>
-        Current window width: {'bleh'}
+      <div id='iphone'>
+        <object data='http://www.cnn.com' width='320' height='480'>
+          <embed src='http://www.cnn.com' width='320' height='480' />
+        </object>
+        <div id='iphone_button' />
       </div>
     );
   }

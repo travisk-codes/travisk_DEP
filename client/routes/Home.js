@@ -11,6 +11,7 @@ var Home = React.createClass({
 				<h1><b>Welcome!</b></h1>
 				<p>{this.getText()}</p>
 				<p>{'Here are the features I would like for this website to have before I call it "finished":'}</p>
+				<p>{'I encourage you to adjust the webpage to a comfortable reading size using the '}<code>ctrl/⌘</code>{' + '}<code>{'+/-'}</code>{' commands.'}</p>
 				<ul>
 					<li>Friendly and responsive:
 						<ul>

@@ -1,53 +1,62 @@
 var React = require('react');
 var Router = require('react-router');
-var d3 = require('d3');
 var Menu = require('./Menu');
+var Signature = require('./Signature');
 
+const shadowSize = 7;
+
+////// LEFT COLUMN
 var LeftColumn = React.createClass({
 	getInitialState: function() {
 		var hue = parseInt(Math.random() * 360); // [0, 360]
 		var sat = parseInt(Math.random() * 67) + 33 + '%'; // [33, 100]
 		var lum = parseInt(Math.random() * 33) + 33 + '%'; // [33, 66]
 		var color = 'hsla(' + hue + ',' + sat + ',' + lum + ',1)';
-		
-		return { backgroundColor: color };
-	},
 
-	getPercent: function() {
-		return parseInt(Math.random() * 100);
+		return { backgroundColor: color };
 	},
 
   render: function() {
 		return (
 			<div id='left-column' style={ this.state }>
 				<div id='left-content'>
+					<Signature shadowMagnitude={ shadowSize } />
 					<Menu />
-					{/* menu I want
-					<Menu>
-						<Signature>
-						<SvgText id='blog' />
-						<SvgText id='about' />
-						<SvgText id='contact' />
-						<SvgText id='projects' />
-					</Menu>*/}
 				</div>
 			</div>
 		);
 	}
 });
 
+////// SUB-MENU
+var SubMenu = React.createClass({
+	render: function() {
+		return (
+			<div id='sub-menu'>
+				<ul>
+					<li>SOURCES OF MOTIVATION</li><br />
+					<li>SOME OTHER PAGE LOL</li><br />
+				</ul>
+			</div>
+		);
+	}
+});
+
+////// RIGHT COLUMN
 var RightColumn = React.createClass({
 	render: function() {
 		return (
 			<div id='right-column'>
 				<div id='right-content'>
 					<Router.RouteHandler />
+					{/*<div id='column-shadow' shadowMagnitude={ shadowSize } style={{ width: '4px' }}/>*/}
 				</div>
 			</div>
 		);
 	}
 });
 
+////// PAGE
 var Page = React.createClass({
 	render: function() {
 		return (
@@ -59,6 +68,7 @@ var Page = React.createClass({
 	}
 });
 
+////// ROUTING
 var routes = {
 	Home: require('../routes/Home'),
 	About: require('../routes/About'),
