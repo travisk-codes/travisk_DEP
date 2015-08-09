@@ -8,7 +8,7 @@ d3Sig.create = function(el, props, shadowSize) {
 			.attr('id', 'sigClipPathOne');
 
 	// svg defs clipPathOne path
-	clipPathOne.append('path').attr('class', 'test_shadow')
+	clipPathOne.append('path').attr('class', 'sig-shadow')
 			.attr('d', props[0]);
 			/*.attr('transform', 'translate(-7, -7)');
 			.transition()
@@ -21,7 +21,7 @@ d3Sig.create = function(el, props, shadowSize) {
 			.attr('id', 'sigClipPathTwo');
 
   // svg defs clipPathTwo path
-	clipPathTwo.append('path').attr('class', 'test_shadow')
+	clipPathTwo.append('path').attr('class', 'sig-shadow')
 			.attr('d', props[1]);
 			/*.attr('transform', 'translate(-7, -7)');
 			.transition()
@@ -31,18 +31,25 @@ d3Sig.create = function(el, props, shadowSize) {
 };
 
 var t0 = new Date();
-var currentSec = t0.getSeconds();
+var currHour = t0.getHours();
 
 d3.timer(function() {
-	var delta = (Date.now() - t0) / 1000 / 60 + (currentSec / 60); // 1 per min
-	var omega = -delta * 2 * Math.PI; // 2*pi rad/min
+	var delta = Date.now() - t0; // [0,inf] 1/ms
+	var deltaDay = delta / 1000 / 60 / 60 / 24; // [0,inf] 1/day
+	var startDay = (currHour / 24) + deltaDay; // [now,inf] 1/day
+	var omega = startDay * -2 * Math.PI; // [now,inf] 2*pi rad/day
+																			 // negative for cw direction
+	console.log(currHour+', '+startDay+', '+omega);
 
-	d3.selectAll('.test_shadow').attr('transform', function() {
-		return 'translate(' + 8*Math.sin(omega) + ',' + 8*Math.cos(omega) + ')';
+	var shadowShiftX = -12*Math.cos(omega); // 12px * rev/day
+	var shadowShiftY = 12*Math.sin(omega); // 12px * rev/day
+
+	d3.selectAll('.sig-shadow').attr('transform', function() {
+		return 'translate('+shadowShiftX+','+shadowShiftY+')';
 	});
 
 	d3.select('#left-column').style('border-right', function() {
-		return 4*Math.sin(omega) + 'px solid lightgrey';
+		return 5*Math.cos(omega) + 'px solid lightgrey';
 	});
 });
 
