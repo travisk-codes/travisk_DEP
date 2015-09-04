@@ -49,7 +49,6 @@ var RightColumn = React.createClass({
 			<div id='right-column'>
 				<div id='right-content'>
 					<Router.RouteHandler />
-					{/*<div id='column-shadow' shadowMagnitude={ shadowSize } style={{ width: '4px' }}/>*/}
 				</div>
 			</div>
 		);

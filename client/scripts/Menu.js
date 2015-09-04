@@ -27,9 +27,66 @@ var Menu = React.createClass({
 	},
 
 	render: function() {
+		var blog = {
+			id: 'menu-item-blog',
+			style: {
+				letterSpacing: '0.89em',
+				//fontWeight: 500,
+			},
+			text: 'BLOG',
+		};
+		var about = {
+			id: 'menu-item-about',
+			style: {
+				letterSpacing: '0.5em',
+				fontWeight: 600,
+			},
+			text: 'ABOUT',
+		};
+		var contact = {
+			id: 'menu-item-cont',
+			style: {
+				letterSpacing: '0.11em',
+				fontWeight: 500,
+			},
+			text: 'CONTACT',
+		};
+		var projects = {
+			id: 'menu-item-proj',
+			style: {
+				letterSpacing: '0.023em',
+				fontWeight: 300,
+			},
+			text: 'PROJECTS',
+		};
+
+		var menuItems = [
+			blog,
+			about,
+			contact,
+			projects,
+		];
+
+		var SVGs = menuItems.map( function(item) {
+			return (
+				<svg version='1.1' width='100%' height='50px'>
+					<text
+						id={item.id}
+						y='40'
+						fontFamily='Helvetica-Bold'
+						fontSize='40'
+						transform={item.transform}
+						style={item.style}
+					>
+						{item.text}
+					</text>
+				</svg>
+			);
+		});
+
 		return (
 			<div id='menu' border='solid black'>
-				<svg version="1.1" x='0' y='0'
+				{/*<svg version="1.1" x='0' y='0'
 													 width='100%' height='100%'
 													 viewBox={ '0 0 600 ' + this.state.height }>
 					<defs />
@@ -58,28 +115,9 @@ var Menu = React.createClass({
 							</Router.Link>
 						</text>
 					</g>
-				</svg>
-
-				{/*<svg version='1.1' width='100%' height='50px'>
-					<text y='40' fontFamily='Helvetica-Bold' fontSize='40' transform='scale(2.14,1)'>
-						BLOG
-					</text>
-				</svg>
-				<svg version='1.1' width='100%' height='50px'>
-					<text y='40' fontFamily='Helvetica-Bold' fontSize='40' transform='scale(1.7,1)'>
-						ABOUT
-					</text>
-				</svg>
-				<svg version='1.1' width='100%' height='50px'>
-					<text y='40' fontFamily='Helvetica-Bold' fontSize='40' transform='scale(1.24,1)'>
-						CONTACT
-					</text>
-				</svg>
-				<svg version='1.1' width='100%' height='50px'>
-					<text y='40' fontFamily='Helvetica-Bold' fontSize='40' transform='scale(1.14,1)'>
-						PROJECTS
-					</text>
 				</svg>*/}
+
+				{SVGs}
 			</div>
 		);
 	},

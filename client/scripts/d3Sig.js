@@ -39,18 +39,17 @@ d3.timer(function() {
 	var startDay = (currHour / 24) + deltaDay; // [now,inf] 1/day
 	var omega = startDay * -2 * Math.PI; // [now,inf] 2*pi rad/day
 																			 // negative for cw direction
-	console.log(currHour+', '+startDay+', '+omega);
 
-	var shadowShiftX = -12*Math.cos(omega); // 12px * rev/day
-	var shadowShiftY = 12*Math.sin(omega); // 12px * rev/day
+	var shadowShiftX = 12*Math.sin(omega); // 12px * rev/day
+	var shadowShiftY = 12*Math.cos(omega); // 12px * rev/day
 
 	d3.selectAll('.sig-shadow').attr('transform', function() {
 		return 'translate('+shadowShiftX+','+shadowShiftY+')';
 	});
 
 	d3.select('#left-column').style('border-right', function() {
-		return 5*Math.cos(omega) + 'px solid lightgrey';
-	});
+		return Math.floor(5*Math.sin(omega)) + 'px solid lightgrey';
+	}, 60000);
 });
 
 module.exports = d3Sig;

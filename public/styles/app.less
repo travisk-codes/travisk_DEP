@@ -81,6 +81,7 @@ svg a:hover {
 #left-content {
 	margin: 12%;
 	justify-content: center;
+	//border: 1px dotted black;
 
 }
 
@@ -160,8 +161,8 @@ svg a:hover {
 }
 
 #menu-item-blog {
-	font-weight: 900;
-	letter-spacing: 1.04em;
+	font-weight: bold;
+	//letter-spacing: 1.04em;
 }
 
 #menu-item-blog-shadow {
@@ -242,6 +243,67 @@ svg a:hover {
 
 	background-color: black;
 	border-color: white;*/
+}
+
+#random-notes-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; // gotta sprreeaaad it on out, now.
+	flex-wrap: nowrap;
+
+  width: 300px;
+  height: 300px;
+  background-color: pink;
+}
+
+#note-display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 4;
+	padding-top: 20px;
+
+	//font-family: Helvetica;
+	//text-align: center;
+	font-size: 150px;
+}
+
+sup {
+	font-size: 80px;
+}
+
+#beat-display {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#control-display {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.beat {
+	width: 20px;
+	height: 20px;
+
+	background-color: deepskyblue;
+	border: 5px solid blue;
+	border-radius: 10px
+}
+
+.current /*beat*/ {
+	border: 5px solid deepskyblue;
+	background-color: white;
+}
+
+#bpm-input {
+	width: 40px;
 }
 
 //////

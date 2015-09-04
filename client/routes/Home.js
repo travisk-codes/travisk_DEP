@@ -24,6 +24,11 @@ var Home = React.createClass({
 					<li>Glow around the signature</li>
 					<li>(Hopefully) get shadow feature working. I think that is the extra 	bit needed.</li>
 					<li>Tune random colors to a pleasing subset. Maybe using HSL or whatever?</li>
+					<li>Submenu feature</li>
+					<li>Collapsable side bar with icon menu items (which will also be used in the mobile layout)</li>
+					<li>Nighttime UI and button</li>
+					<li>Shadow adjust feature and button</li>
+					<li>Help/walkthrough feature and button</li>
 				</ul>
 			</div>
 		);
