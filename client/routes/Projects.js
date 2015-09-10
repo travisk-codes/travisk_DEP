@@ -17,7 +17,7 @@ var AccidentalsInput = React.createClass({
   render: function() {
     return (
       <div id='accidentals-input-div'>
-        <label htmlFor='accidentals-input'>Accidentals:</label>
+        <label htmlFor='accidentals-input'>ACCIDENTALS:</label>
         <input
           type='checkbox'
           id='accidentals-input'
@@ -51,7 +51,7 @@ var SoundInput = React.createClass({
   render: function() {
     return (
       <div id='sound-input-div'>
-        <label htmlFor='sound-input'>Sound:</label>
+        <label htmlFor='sound-input'>SOUND:</label>
         <input
           type='checkbox'
           id='sound-input'
@@ -76,10 +76,6 @@ var RandomNotes = React.createClass({
       sound: false,
     };
   },
-  // TODO: the component will be changing, but that doesn't necessarily
-  // mean that its state needs to change (e.g. 'accidental', 'note', and 'beat')
-  // try removing one from state, and just place it in an object property or
-  // something.
 
   componentWillMount: function() {
     this.setState({
@@ -90,40 +86,46 @@ var RandomNotes = React.createClass({
 
   componentDidMount: function() {
     this.audio = React.findDOMNode(this.refs.tickSound);
-    var interval = this.bpmToMs();
-    //this.audioInterval = setInterval(this.audio.play(), interval);
-    this.interval = setInterval(this.tick, interval);
+    this.tickInterval = setInterval(this.tick, this.bpmToMs());
   },
 
   componentDidUpdate: function() {
-    clearInterval(this.interval);
-    clearInterval(this.audioInterval);
-    var interval = this.bpmToMs();
-    if (this.state.sound) {
-      this.audioInterval = setInterval(this.audio.play(), interval);
+    if (this.prevBpm !== this.state.bpm) {
+      clearInterval(this.tickInterval);
+      this.tickInterval = setInterval(this.tick, this.bpmToMs());
     }
-    this.interval = setInterval(this.tick, interval);
   },
 
   componentWillUnmount: function() {
-    clearInterval(this.interval);
+    clearInterval(this.tickInterval);
   },
 
   ////// SNOWFLAKE METHODS
   tick: function() {
-    if (this.state.sound) {
-      this.audio.play();
-    }
-    this.setState( {beat: this.getNextBeat()} );
-    if (this.state.beat === 1) {
-      this.setState( {note: this.getRandomNote()} );
-    }
+    if (this.state.sound) { this.audio.play(); }
+
+    this.setState(function(prevState) {
+      var accidental = prevState.accidental;
+      var beat = prevState.beat;
+      var note = prevState.note;
+
+      if (beat === 4) {
+        note = this.getRandomNote();
+        accidental = prevState.accidentals ? this.getRandomAccidental() : '';
+      }
+      beat = this.getNextBeat();
+
+      return {
+        accidental: accidental,
+        beat: beat,
+        note: note,
+      }
+    });
   },
 
   bpmToMs: function() {
     var milliseconds = 1 / ( this.state.bpm * (1/60000) );
         // ms / beat = 1 / (  beats / min  *  min / ms  )
-
     if (milliseconds <= 60000) { // if at least 1 bpm
       return milliseconds;
     } else {
@@ -136,18 +138,25 @@ var RandomNotes = React.createClass({
     var randomIndex = Math.floor( 7*Math.random() ); // int [0,6]
     var note = notes[randomIndex];
 
-    if (this.state.accidentals) {
-      var accidentals = ['','♯','♭'];
-      var randomIndex = Math.floor( 3*Math.random() ); // int [0,2]
-      this.setState( {accidental: accidentals[randomIndex]} );
-    } else {
-      this.setState( {accidental: ''} );
+    // same note? let's try again!
+    if (note === this.state.note) {
+      note = this.getRandomNote();
     }
 
-    // same note? let's try again!
-    if (note === this.state.note) { note = this.getRandomNote(); }
-
     return note;
+  },
+
+  getRandomAccidental: function() {
+    var accidentals = ['','♯','♭'];
+    var randomIndex = Math.floor( 3*Math.random() ); // int [0,2]
+    var accidental = accidentals[randomIndex];
+
+    // same accidental? let's try again!
+    if (accidental === this.state.accidental) {
+      accidental = this.getRandomAccidental();
+    }
+
+    return accidental;
   },
 
   getNextBeat: function() {
@@ -161,20 +170,19 @@ var RandomNotes = React.createClass({
   beatToDivs: function(beat) { // called by tick
     var beatBoolArray = [0,0,0,0];
     beatBoolArray[beat-1] = true;
-    console.log(beatBoolArray);
     beatDivs = beatBoolArray.map(function(currBeat) {
       return (
         <div
           className={ currBeat ? 'current beat' : 'beat' }
-          //key={ 'index'+Date.now() }
         />
       );
     });
 
-    return beatDivs; // array size 4;
+    return beatDivs;
   },
 
   changeBpm: function(e) {
+    this.prevBpm = this.state.bpm;
     this.setState( {bpm: e.target.value} );
   },
 
@@ -192,9 +200,11 @@ var RandomNotes = React.createClass({
     return (
       <div id='random-notes-container'>
         <div id='note-display'>
-            {this.state.note}<sup>{ this.state.accidental }</sup>
+          { this.state.note }<sup>{ this.state.accidental }</sup>
         </div>
-        <div id='beat-display'>{beats}</div>
+        <div id='beat-display'>
+          { beats }
+        </div>
         <div id='control-display'>
           <BpmInput
             bpm={ this.state.bpm }
@@ -210,7 +220,6 @@ var RandomNotes = React.createClass({
           />
           <audio
             src='tick.ogg'
-            volume='0.1'
             ref='tickSound'
           ></audio>
         </div>
